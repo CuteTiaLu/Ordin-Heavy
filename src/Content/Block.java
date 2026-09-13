@@ -47,7 +47,8 @@ public class Block {
             consumeEffect = Fx.explosion;
             itemDuration = 8f * 60f;
             consumeLiquids(LiquidStack.with(Liquids.ozone, 8f / 60f, Liquids.arkycite, 180f / 60f, Liquids.hydrogen, 24f / 60f));
-            drawer = new DrawMulti(new DrawRegion("-底"), new DrawRegion("-液体"), new DrawDefault());
+            outputLiquid = new LiquidStack(Liquids.water, 120f / 60f);
+            drawer = new DrawMulti(new DrawRegion("-底"), new DrawLiquidTile(Liquids.ozone, 1f), new DrawDefault());
         }};
     }
 }
