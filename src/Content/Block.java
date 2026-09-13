@@ -48,7 +48,7 @@ public class Block {
             itemDuration = 8f * 60f;
             consumeLiquids(LiquidStack.with(Liquids.ozone, 8f / 60f, Liquids.arkycite, 180f / 60f, Liquids.hydrogen, 24f / 60f));
             outputLiquid = new LiquidStack(Liquids.water, 120f / 60f);
-            drawer = new DrawMulti(new DrawRegion("-底"), new DrawLiquidTile(Liquids.ozone, 1f), new DrawDefault());
+            drawer = new DrawMulti(new DrawRegion("-bottom"), new DrawDefault());
         }};
     }
 }
