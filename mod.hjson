@@ -1,20 +1,20 @@
 #the mod name as displayed in-game
-displayName: "Java Mod Template"
+displayName: "普通的重工业"
 
 #the internal name of your mod
-name: "example-java-mod"
+name: "Ordin-Tial"
 
 #your name
-author: "You"
+author: "超可爱的天禄"
 
 #the fully qualified main class of the mod
-main: "example.ExampleJavaMod"
+main: "Main"
 
 #the mod description as seen in the mod dialog
-description: "A Mindustry Java mod template."
+description: "一个玩幽灵行者的人做的模组"
 
 #the mod version
-version: 1.0
+version: 0.01
 
 #the minimum game build required to run this mod
 minGameVersion: 160
