@@ -1,6 +1,17 @@
 package Content;
 
+import arc.graphics.Color;
+import mindustry.content.Fx;
+import mindustry.content.Items;
+import mindustry.content.Liquids;
+import mindustry.type.Category;
+import mindustry.type.ItemStack;
+import mindustry.type.LiquidStack;
 import mindustry.world.blocks.power.ConsumeGenerator;
+import mindustry.content.Blocks;
+import mindustry.world.draw.*;
+
+import static mindustry.type.ItemStack.with;
 
 public class Block {
     public static mindustry.world.Block
@@ -23,8 +34,27 @@ public class Block {
         IronBlock;//铁
 
     public static void Create() {
-        Reaction_Power_Plant = new ConsumeGenerator("反应发电厂") {{
+        Electric_Silicon_Furnace = new ConsumeGenerator("电硅炉") {{
 
+        }};
+        Reaction_Power_Plant = new ConsumeGenerator("反应发电厂") {{
+            powerProduction = 12580f / 60f;
+            size = 5;
+            researchCost = with(Category.power, ItemStack.with(Items.thorium, 320, Items.silicon, 30, Items.tungsten, 450, Items.oxide, 80));
+            health = 35000;
+            description = "";
+            generateEffect = Fx.steam;
+            consumeEffect = Fx.explosion;
+            itemDuration = 8f * 60f;
+            consumeLiquids(LiquidStack.with(Liquids.ozone, 8f / 60f, Liquids.arkycite, 120f / 60f, Liquids.hydrogen, 16f / 60f));
+            drawer = new DrawMulti(new DrawRegion("-底"), new DrawPistons(){{
+                sinMag = 3f;
+                sinScl = 5f;
+            }}, new DrawRegion("-液体"), new DrawLiquidTile(Liquids.arkycite, 37f / 4f), new DrawDefault(), new DrawGlowRegion(){{
+                alpha = 1f;
+                glowScale = 5f;
+                color = Color.valueOf("c967b099");
+            }});
         }};
     }
 }
