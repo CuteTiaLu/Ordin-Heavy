@@ -1,6 +1,5 @@
 package Content;
 
-import arc.graphics.Color;
 import mindustry.content.Fx;
 import mindustry.content.Items;
 import mindustry.content.Liquids;
@@ -8,12 +7,10 @@ import mindustry.gen.Sounds;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.type.LiquidStack;
-import mindustry.world.blocks.power.ConsumeGenerator;
 import mindustry.content.Blocks;
 import mindustry.world.blocks.production.GenericCrafter;
 import mindustry.world.draw.*;
-
-import static mindustry.type.ItemStack.with;
+import type.Block.BoostConsumeGenerator;
 
 public class Block {
     public static mindustry.world.Block
@@ -39,10 +36,10 @@ public class Block {
         Electric_Silicon_Furnace = new GenericCrafter("电硅炉") {{
 
         }};
-        Reaction_Power_Plant = new ConsumeGenerator("反应发电厂") {{
-            powerProduction = 15780f / 60f;
+        Reaction_Power_Plant = new BoostConsumeGenerator("反应发电厂") {{
+            powerProduction = 12800f / 60f;
             size = 5;
-            requirements(Category.power, ItemStack.with(Items.thorium, 320, Items.silicon, 30, Items.tungsten, 450, Items.carbide, 160, Items.oxide, 80));
+            requirements(Category.power, ItemStack.with(Items.thorium, 320, Items.silicon, 30, Items.tungsten, 450, Items.carbide, 160, Items.surgeAlloy, 120, Items.oxide, 80));
             health = 22500;
 
             liquidCapacity = 640f;
@@ -55,10 +52,20 @@ public class Block {
             explodeSound = Sounds.explosionReactor2;
             explosionMinWarmup = 0.8f;
 
+            BoostIntensity = 2.2f;
+
+            liqu = Liquids.water;
+            boostliqu = Liquids.cyanogen;
+            liquCons = 80f / 60f;
+
+            consumeLiquids(LiquidStack.with(Liquids.cyanogen, 12f / 60f)).boost();
+            consumeLiquids(LiquidStack.with(Liquids.water, 80f / 60f)).boost().update(false);
+
             hasLiquids = true;
 
             consumeLiquids(LiquidStack.with(Liquids.ozone, 16f / 60f, Liquids.arkycite, 280f / 60f, Liquids.hydrogen, 38f / 60f));
-            outputLiquid = new LiquidStack(Liquids.water, 40f / 60f);
+
+            outputLiquid = new LiquidStack(Liquids.water, 30f / 60f);
             drawer = new DrawMulti(new DrawRegion("-bottom"), new DrawLiquidRegion(Liquids.water), new DrawDefault());
         }};
     }
