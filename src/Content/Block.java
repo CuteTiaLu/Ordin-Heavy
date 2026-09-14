@@ -44,7 +44,6 @@ public class Block {
             size = 5;
             requirements(Category.power, ItemStack.with(Items.thorium, 320, Items.silicon, 30, Items.tungsten, 450, Items.carbide, 160, Items.oxide, 80));
             health = 22500;
-            description = "通过ozone和hydrogen还有arkycite的剧烈爆燃反应发电，被摧毁时会引发爆炸。";
 
             liquidCapacity = 640f;
 
@@ -56,9 +55,11 @@ public class Block {
             explodeSound = Sounds.explosionReactor2;
             explosionMinWarmup = 0.8f;
 
+            hasLiquids = true;
+
             consumeLiquids(LiquidStack.with(Liquids.ozone, 16f / 60f, Liquids.arkycite, 280f / 60f, Liquids.hydrogen, 38f / 60f));
             outputLiquid = new LiquidStack(Liquids.water, 40f / 60f);
-            drawer = new DrawMulti(new DrawRegion("-bottom"), new DrawDefault());
+            drawer = new DrawMulti(new DrawRegion("-bottom"), new DrawLiquidRegion(Liquids.water), new DrawDefault());
         }};
     }
 }
