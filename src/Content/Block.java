@@ -40,22 +40,22 @@ public class Block {
 
         }};
         Reaction_Power_Plant = new ConsumeGenerator("反应发电厂") {{
-            powerProduction = 12580f / 60f;
+            powerProduction = 15780f / 60f;
             size = 5;
-            requirements(Category.power, ItemStack.with(Items.thorium, 320, Items.silicon, 30, Items.tungsten, 450, Items.oxide, 80));
-            health = 35000;
+            requirements(Category.power, ItemStack.with(Items.thorium, 320, Items.silicon, 30, Items.tungsten, 450, Items.carbide, 160, Items.oxide, 80));
+            health = 18500;
             description = "";
-            generateEffect = Fx.spawnShockwave;
+            liquidCapacity = 640f;
+
             ambientSound = Sounds.explosionTitan;
-            ambientSoundVolume = 0.5f;
+            ambientSoundVolume = 0.35f;
 
-            explosionDamage = 1900 * 4;
             explodeEffect = Fx.impactReactorExplosion;
+            explosionDamage = 6500;
             explodeSound = Sounds.explosionReactor2;
-            explosionMinWarmup = 0.3f;
+            explosionMinWarmup = 0.8f;
 
-            itemDuration = 8f * 60f;
-            consumeLiquids(LiquidStack.with(Liquids.ozone, 12f / 60f, Liquids.arkycite, 220f / 60f, Liquids.hydrogen, 24f / 60f));
+            consumeLiquids(LiquidStack.with(Liquids.ozone, 16f / 60f, Liquids.arkycite, 280f / 60f, Liquids.hydrogen, 38f / 60f));
             outputLiquid = new LiquidStack(Liquids.water, 40f / 60f);
             drawer = new DrawMulti(new DrawRegion("-bottom"), new DrawDefault());
         }};
