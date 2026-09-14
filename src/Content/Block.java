@@ -4,11 +4,13 @@ import arc.graphics.Color;
 import mindustry.content.Fx;
 import mindustry.content.Items;
 import mindustry.content.Liquids;
+import mindustry.gen.Sounds;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.type.LiquidStack;
 import mindustry.world.blocks.power.ConsumeGenerator;
 import mindustry.content.Blocks;
+import mindustry.world.blocks.production.GenericCrafter;
 import mindustry.world.draw.*;
 
 import static mindustry.type.ItemStack.with;
@@ -34,7 +36,7 @@ public class Block {
         IronBlock;//铁
 
     public static void Create() {
-        Electric_Silicon_Furnace = new ConsumeGenerator("电硅炉") {{
+        Electric_Silicon_Furnace = new GenericCrafter("电硅炉") {{
 
         }};
         Reaction_Power_Plant = new ConsumeGenerator("反应发电厂") {{
@@ -43,11 +45,18 @@ public class Block {
             requirements(Category.power, ItemStack.with(Items.thorium, 320, Items.silicon, 30, Items.tungsten, 450, Items.oxide, 80));
             health = 35000;
             description = "";
-            generateEffect = Fx.steam;
-            consumeEffect = Fx.explosion;
+            generateEffect = Fx.spawnShockwave;
+            ambientSound = Sounds.explosionTitan;
+            ambientSoundVolume = 0.5f;
+
+            explosionDamage = 1900 * 4;
+            explodeEffect = Fx.impactReactorExplosion;
+            explodeSound = Sounds.explosionReactor2;
+            explosionMinWarmup = 0.3f;
+
             itemDuration = 8f * 60f;
-            consumeLiquids(LiquidStack.with(Liquids.ozone, 8f / 60f, Liquids.arkycite, 180f / 60f, Liquids.hydrogen, 24f / 60f));
-            outputLiquid = new LiquidStack(Liquids.water, 120f / 60f);
+            consumeLiquids(LiquidStack.with(Liquids.ozone, 12f / 60f, Liquids.arkycite, 220f / 60f, Liquids.hydrogen, 24f / 60f));
+            outputLiquid = new LiquidStack(Liquids.water, 40f / 60f);
             drawer = new DrawMulti(new DrawRegion("-bottom"), new DrawDefault());
         }};
     }
