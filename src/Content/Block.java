@@ -43,15 +43,16 @@ public class Block {
             powerProduction = 15780f / 60f;
             size = 5;
             requirements(Category.power, ItemStack.with(Items.thorium, 320, Items.silicon, 30, Items.tungsten, 450, Items.carbide, 160, Items.oxide, 80));
-            health = 18500;
-            description = "";
+            health = 22500;
+            description = "通过ozone和hydrogen还有arkycite的剧烈爆燃反应发电，被摧毁时会引发爆炸。";
+
             liquidCapacity = 640f;
 
             ambientSound = Sounds.explosionTitan;
             ambientSoundVolume = 0.35f;
 
             explodeEffect = Fx.impactReactorExplosion;
-            explosionDamage = 6500;
+            explosionDamage = 8500;
             explodeSound = Sounds.explosionReactor2;
             explosionMinWarmup = 0.8f;
 
