@@ -72,7 +72,8 @@ public class Block {
         }};
 
         Hold_Core = new DefenseCore("坚守核心") {{
-            requirements(Category.distribution, ItemStack.with(Items.thorium, 320));
+            requirements(Category.effect, ItemStack.with(Items.thorium, 320));
+
             addTurret(Blocks.salvo);
         }};
     }
