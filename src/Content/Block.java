@@ -11,6 +11,7 @@ import mindustry.content.Blocks;
 import mindustry.world.blocks.production.GenericCrafter;
 import mindustry.world.draw.*;
 import type.Block.BoostConsumeGenerator;
+import type.Block.DefenseCore;
 
 public class Block {
     public static mindustry.world.Block
@@ -27,6 +28,7 @@ public class Block {
         iron_Drill_bit,//铁钻头
         Steel_drilling_rig,//钢钻机
         Beginner_Core,//初级核心
+        Hold_Core,//坚守核心
         Suppress,//压制
         Copper_Lead_Alloy_Conveyor,//铜铅合金传送带
         Thermal_Transmission_Line,//热力线
@@ -67,6 +69,11 @@ public class Block {
 
             outputLiquid = new LiquidStack(Liquids.water, 30f / 60f);
             drawer = new DrawMulti(new DrawRegion("-bottom"), new DrawLiquidRegion(Liquids.water), new DrawDefault());
+        }};
+
+        Hold_Core = new DefenseCore("坚守核心") {{
+            requirements(Category.distribution, ItemStack.with(Items.thorium, 320));
+            addTurret(Blocks.salvo);
         }};
     }
 }
