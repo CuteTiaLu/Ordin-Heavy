@@ -8,10 +8,12 @@ import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.type.LiquidStack;
 import mindustry.content.Blocks;
+import mindustry.world.blocks.defense.turrets.ItemTurret;
 import mindustry.world.blocks.production.GenericCrafter;
 import mindustry.world.draw.*;
 import type.Block.BoostConsumeGenerator;
 import type.Block.DefenseCore;
+import type.Block.OverItemTurret;
 
 public class Block {
     public static mindustry.world.Block
@@ -73,8 +75,13 @@ public class Block {
 
         Hold_Core = new DefenseCore("坚守核心") {{
             requirements(Category.effect, ItemStack.with(Items.thorium, 320));
+            size = 5;
 
             addTurret(Blocks.salvo);
+        }};
+
+        Suppress = new OverItemTurret("压制") {{
+            Overheating = 0.08f;//1秒可以过热的程度
         }};
     }
 }

@@ -1,10 +1,10 @@
 package type.Block;
 
 import arc.util.io.Reads;
-import mindustry.gen.Building;
 import mindustry.type.Item;
 import mindustry.world.Block;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
+import mindustry.world.blocks.payloads.BuildPayload;
 import mindustry.world.blocks.storage.CoreBlock;
 
 import java.util.Arrays;
@@ -28,41 +28,29 @@ public class DefenseCore extends CoreBlock {
 
         class Build {
 
-            Build(Building turret, Item ammo) {
+            Build(BuildPayload turret, Item ammo) {
                 this.turret = turret;
                 this.ammo = ammo;
             }
 
-            Building turret;
+            BuildPayload turret;
             Item ammo;
         }
 
         @Override
         public void placed() {
             super.placed();
-            turretBuild = new Build[turret.length];
-            for (int i = 0; i < turretBuild.length; i++) {
-                Building b = turret[i].newBuilding();
-                if (b.block instanceof ItemTurret it) {
-                    b.team = team;
-                    b.tile = tile;
-                    b.x = x;
-                    b.y = y;
-                    for (Item item : it.ammoTypes.keys()) {
-                        turretBuild[i] = new Build(b, item);
-                        break;
-                    }
-                }
-            }
+            NEWBuild();
         }
 
         @Override
         public void updateTile() {
             super.updateTile();
-            for (Build building : turretBuild) {
+            for (DefenseCoreBuild.Build building : turretBuild) {
                 if (building != null) {
-                    building.turret.handleItem(building.turret, building.ammo);
-                    building.turret.updateTile();
+                    building.turret.build.handleItem(building.turret.build, building.ammo);
+                    building.turret.update(null, this);
+                    building.turret.build.team = team;
                 }
             }
         }
@@ -70,21 +58,28 @@ public class DefenseCore extends CoreBlock {
         @Override
         public void read(Reads read, byte revision) {
             super.read(read, revision);
+            NEWBuild();
+        }
+
+        void NEWBuild() {
             turretBuild = new Build[turret.length];
             for (int i = 0; i < turretBuild.length; i++) {
-                Building b = turret[i].newBuilding();
-                if (b.block instanceof ItemTurret it) {
-                    b.team = team;
-                    b.tile = tile;
-                    b.x = x;
-                    b.y = y;
-                    for (Item item : it.ammoTypes.keys()) {
-                        turretBuild[i] = new Build(b, item);
-                        break;
-                    }
+                BuildPayload b = new BuildPayload(turret[i].newBuilding());
+                b.set(x, y, rotation);
+                b.build.team = team;
+                if (b.block() instanceof ItemTurret itemTurret) for (Item item : itemTurret.ammoTypes.keys()) {
+                    turretBuild[i] = new Build(b, item);
+                    break;
                 }
             }
         }
 
+        @Override
+        public void draw() {
+            super.draw();
+            for (Build build : turretBuild) {
+                if (build != null) build.turret.build.draw();
+            }
+        }
     }
 }
