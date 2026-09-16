@@ -33,17 +33,17 @@ public class OverItemTurret extends ItemTurret {
         @Override
         public void updateTile() {
             lastShootTime += delta();
-            if (RapidCooling != null && liquids.get(RapidCooling) > liquidCapacity * 0.4f) {cooling = false;print("RapidCooling 生效，overheat=0"); overheat = 0;return;}
+            if (RapidCooling != null && liquids.get(RapidCooling) > liquidCapacity * 0.4f) { cooling = false; overheat = 0;}
             if (overheat >= 1f) {
                 cooling = true;
             } else if (overheat < 0.001f) {
                 cooling = false;
             }
             if (cooling) {
-                overheat = Mathf.clamp(overheat - (coolingRate * (delta() / 60f) * 0.8f), 0f, 1.0001f);
+                overheat = Mathf.clamp(overheat - ((coolingRate / 30f) * delta() * 0.8f), 0f, 1.0001f);
             } else {
                 super.updateTile();
-                overheat = Mathf.clamp(overheat + ((lastShootTime < (reload / 60f) + 1.5f) ? Overheating * (delta() / 60f) : -coolingRate * (delta() / 60f) * 0.8f), 0f, 1.0001f);
+                overheat = Mathf.clamp(overheat + ((lastShootTime < (reload / 60f) + 1.5f) ? (Overheating / 30f) * delta() : (-coolingRate / 30f) * delta() * 0.8f), 0f, 1.0001f);
             }
         }
 
