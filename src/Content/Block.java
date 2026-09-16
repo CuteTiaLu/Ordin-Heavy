@@ -3,12 +3,13 @@ package Content;
 import mindustry.content.Fx;
 import mindustry.content.Items;
 import mindustry.content.Liquids;
+import mindustry.entities.bullet.BasicBulletType;
 import mindustry.gen.Sounds;
+import mindustry.graphics.Pal;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.type.LiquidStack;
 import mindustry.content.Blocks;
-import mindustry.world.blocks.defense.turrets.ItemTurret;
 import mindustry.world.blocks.production.GenericCrafter;
 import mindustry.world.draw.*;
 import type.Block.BoostConsumeGenerator;
@@ -17,24 +18,24 @@ import type.Block.OverItemTurret;
 
 public class Block {
     public static mindustry.world.Block
-        Electric_Silicon_Furnace,//电硅炉
-        Copper_Lead_Alloy_Mixer,//铜铅合金混合机
-        Tungsten_Steel_Refining_Furnace,//钨钢精炼炉
-        High_Temperature_Press_Machine, //高温压片机
-        Combustion_Heat_Generator,//燃烧发热机
-        Heat_energy_storage,//热能电池
-        Heat_Extractor,//热力提取机
-        Electric_Heating_Machine,//电制热机
-        Reaction_Power_Plant,//反应发电厂
-        Copper_lead_alloy_Drill_bit,//铜铅合金钻头
-        iron_Drill_bit,//铁钻头
-        Steel_drilling_rig,//钢钻机
-        Beginner_Core,//初级核心
-        Hold_Core,//坚守核心
-        Suppress,//压制
-        Copper_Lead_Alloy_Conveyor,//铜铅合金传送带
-        Thermal_Transmission_Line,//热力线
-        IronBlock;//铁
+            Electric_Silicon_Furnace,//电硅炉
+            Copper_Lead_Alloy_Mixer,//铜铅合金混合机
+            Tungsten_Steel_Refining_Furnace,//钨钢精炼炉
+            High_Temperature_Press_Machine, //高温压片机
+            Combustion_Heat_Generator,//燃烧发热机
+            Heat_energy_storage,//热能电池
+            Heat_Extractor,//热力提取机
+            Electric_Heating_Machine,//电制热机
+            Reaction_Power_Plant,//反应发电厂
+            Copper_lead_alloy_Drill_bit,//铜铅合金钻头
+            iron_Drill_bit,//铁钻头
+            Steel_drilling_rig,//钢钻机
+            Beginner_Core,//初级核心
+            Hold_Core,//坚守核心
+            Suppress,//压制
+            Copper_Lead_Alloy_Conveyor,//铜铅合金传送带
+            Thermal_Transmission_Line,//热力线
+            IronBlock;//铁
 
     public static void Create() {
         Electric_Silicon_Furnace = new GenericCrafter("电硅炉") {{
@@ -81,7 +82,47 @@ public class Block {
         }};
 
         Suppress = new OverItemTurret("压制") {{
+
+            requirements(Category.turret, ItemStack.with(Items.thorium, 0));
+
             Overheating = 0.08f;//1秒可以过热的程度
+            coolingRate = 0.16f;//1秒可以冷却的程度
+
+            size = 2;
+            liquidCapacity = 40f;
+
+            reload = 2.5f;
+
+            RapidCooling = Liquids.cryofluid;
+
+            consumeLiquids(LiquidStack.with(Liquids.cryofluid, 20f / 60f)).boost().update(false);
+
+            ammo(Items.copper, new BasicBulletType(24f, 45) {{
+                        width = 1.27f;
+                        height = 10.8f;
+                        lifetime = 60f;
+                        ammoMultiplier = 7;
+                        armorMultiplier = 0.4f;
+
+                        hitEffect = despawnEffect = Fx.hitBulletColor;
+                        hitColor = backColor = trailColor = Pal.copperAmmoBack;
+                        frontColor = Pal.copperAmmoFront;
+                    }},
+                    Items.silicon, new BasicBulletType(24f, 40, "bullet") {{
+                        width = 1.27f;
+                        height = 10.8f;
+                        lifetime = 60f;
+                        ammoMultiplier = 7;
+                        armorMultiplier = 0.45f;
+                        homingPower = 0.2f;
+                        reloadMultiplier = 1.5f;
+
+                        trailLength = 5;
+                        trailWidth = 1.5f;
+                        hitEffect = despawnEffect = Fx.hitBulletColor;
+                        hitColor = backColor = trailColor = Pal.siliconAmmoBack;
+                        frontColor = Pal.siliconAmmoFront;
+                    }});
         }};
     }
 }
