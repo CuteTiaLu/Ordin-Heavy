@@ -98,31 +98,31 @@ public class Block {
             consumeLiquids(LiquidStack.with(Liquids.cryofluid, 20f / 60f)).boost().update(false);
 
             ammo(Items.copper, new BasicBulletType(24f, 45) {{
-                        width = 1.27f;
-                        height = 10.8f;
-                        lifetime = 60f;
-                        ammoMultiplier = 5;
-                        armorMultiplier = 0.8f;
+                width = 1.27f;
+                height = 10.8f;
+                lifetime = 60f;
+                ammoMultiplier = 5;
+                armorMultiplier = 0.8f;
 
-                        hitEffect = despawnEffect = Fx.hitBulletColor;
-                        hitColor = backColor = trailColor = Pal.copperAmmoBack;
-                        frontColor = Pal.copperAmmoFront;
-                    }},
-                    Items.silicon, new BasicBulletType(24f, 40, "bullet") {{
-                        width = 1.27f;
-                        height = 10.8f;
-                        lifetime = 60f;
-                        ammoMultiplier = 4;
-                        armorMultiplier = 0.78f;
-                        homingPower = 0.2f;
-                        reloadMultiplier = 1.5f;
+                hitEffect = despawnEffect = Fx.hitBulletColor;
+                hitColor = backColor = trailColor = Pal.copperAmmoBack;
+                frontColor = Pal.copperAmmoFront;
+            }},
+            Items.silicon, new BasicBulletType(24f, 40, "bullet") {{
+                width = 1.27f;
+                height = 10.8f;
+                lifetime = 60f;
+                ammoMultiplier = 4;
+                armorMultiplier = 0.78f;
+                homingPower = 0.2f;
+                reloadMultiplier = 1.5f;
 
-                        trailLength = 5;
-                        trailWidth = 1.5f;
-                        hitEffect = despawnEffect = Fx.hitBulletColor;
-                        hitColor = backColor = trailColor = Pal.siliconAmmoBack;
-                        frontColor = Pal.siliconAmmoFront;
-                    }});
+                trailLength = 5;
+                trailWidth = 1.5f;
+                hitEffect = despawnEffect = Fx.hitBulletColor;
+                hitColor = backColor = trailColor = Pal.siliconAmmoBack;
+                frontColor = Pal.siliconAmmoFront;
+            }});
         }};
     }
 }
