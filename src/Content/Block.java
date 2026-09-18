@@ -45,7 +45,7 @@ public class Block {
             powerProduction = 12800f / 60f;
             size = 5;
             requirements(Category.power, ItemStack.with(Items.thorium, 320, Items.silicon, 30, Items.tungsten, 450, Items.carbide, 160, Items.surgeAlloy, 120, Items.oxide, 80));
-            health = 22500;
+            health = 8920;
 
             liquidCapacity = 640f;
 
@@ -53,7 +53,7 @@ public class Block {
             ambientSoundVolume = 0.35f;
 
             explodeEffect = Fx.impactReactorExplosion;
-            explosionDamage = 8500;
+            explosionDamage = 5740;
             explodeSound = Sounds.explosionReactor2;
             explosionMinWarmup = 0.8f;
 
