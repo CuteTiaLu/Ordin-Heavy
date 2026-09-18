@@ -9,8 +9,6 @@ import mindustry.ui.Bar;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
 import mindustry.world.blocks.heat.HeatBlock;
 
-import static mindustry.io.JsonIO.print;
-
 public class OverItemTurret extends ItemTurret {
 
     public float Overheating, coolingRate, overheatInaccuracy;
@@ -33,23 +31,22 @@ public class OverItemTurret extends ItemTurret {
         @Override
         public void updateTile() {
             lastShootTime += delta();
-            if (RapidCooling != null && liquids.get(RapidCooling) > liquidCapacity * 0.4f) { cooling = false; overheat = 0;}
             if (overheat >= 1f) {
                 cooling = true;
             } else if (overheat < 0.001f) {
                 cooling = false;
             }
-            if (cooling) {
-                overheat = Mathf.clamp(overheat - ((coolingRate / 30f) * delta() * 0.8f), 0f, 1.0001f);
-            } else {
+            if (RapidCooling != null && liquids.get(RapidCooling) > liquidCapacity * 0.4f) { cooling = false; overheat = 0;}
+            if (!cooling) {
                 super.updateTile();
-                overheat = Mathf.clamp(overheat + ((lastShootTime < (reload / 60f) + 1.5f) ? (Overheating / 30f) * delta() : (-coolingRate / 30f) * delta() * 0.8f), 0f, 1.0001f);
             }
+            if ((lastShootTime > (reload / 60f) + 1.5f)) overheat = Math.max(overheat - (coolingRate * delta() * ((cooling) ? 0.8f : 1f)), 0f);
         }
 
         @Override
         protected void shoot(BulletType type) {
             super.shoot(type);
+            overheat = Math.min(overheat + (Overheating * delta()), 1.0001f);
             lastShootTime = 0f;
         }
 

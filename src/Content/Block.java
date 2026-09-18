@@ -101,8 +101,8 @@ public class Block {
                         width = 1.27f;
                         height = 10.8f;
                         lifetime = 60f;
-                        ammoMultiplier = 7;
-                        armorMultiplier = 0.4f;
+                        ammoMultiplier = 5;
+                        armorMultiplier = 0.8f;
 
                         hitEffect = despawnEffect = Fx.hitBulletColor;
                         hitColor = backColor = trailColor = Pal.copperAmmoBack;
@@ -112,8 +112,8 @@ public class Block {
                         width = 1.27f;
                         height = 10.8f;
                         lifetime = 60f;
-                        ammoMultiplier = 7;
-                        armorMultiplier = 0.45f;
+                        ammoMultiplier = 4;
+                        armorMultiplier = 0.78f;
                         homingPower = 0.2f;
                         reloadMultiplier = 1.5f;
 
