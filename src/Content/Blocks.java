@@ -97,6 +97,8 @@ public class Blocks {
             rotateSpeed = 7f;
             inaccuracy = 1.25f;
 
+            range = 230;
+
             size = 2;
             liquidCapacity = 40f;
 
@@ -108,7 +110,8 @@ public class Blocks {
 
             RapidCooling = Liquids.cryofluid;
 
-            consumeLiquids(LiquidStack.with(Liquids.cryofluid, 20f / 60f)).boost();
+            coolant = consumeCoolant(0.1f);
+            coolantMultiplier = 10f;
 
             ammo(
             Iron, new BasicBulletType(24f, 23) {{
@@ -116,7 +119,7 @@ public class Blocks {
                 height = 15.2f;
                 trailLength = 17;
                 trailWidth = 1.2f;
-                lifetime = 60f;
+                lifetime = 15f;
                 ammoMultiplier = 5;
                 armorMultiplier = 0.8f;
 
