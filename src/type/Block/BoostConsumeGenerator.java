@@ -48,7 +48,7 @@ public class BoostConsumeGenerator extends ConsumeGenerator {
         super.init();
         boost = boostliquid != null;
         Cool = Coolingliquid != null;
-        CoolisOut = outputLiquid.liquid != null && outputLiquid.liquid == Coolingliquid;
+        CoolisOut = outputLiquid != null && outputLiquid.liquid != null && outputLiquid.liquid == Coolingliquid;
     }
 
     public class BoostConsumeGeneratorBuild extends ConsumeGeneratorBuild implements HeatBlock {
@@ -80,10 +80,10 @@ public class BoostConsumeGenerator extends ConsumeGenerator {
                     if (liquids.get(Coolingliquid) > CoolingCons) {
                         heat = Math.max(heat - (coolingRate * Time.delta), 0);
                         liquids.remove(Coolingliquid, CoolingCons);
-                    } else if (liquids.get(Coolingliquid) < CoolingCons) {
+                    } else {
                         heat = Math.min(heat + (Overheating * Time.delta), 1.001f);
                     }
-                }
+                } else heat = Math.min(heat + (Overheating * Time.delta), 1.001f);
             }
             if (heat > 1f) {
                 Events.fire(EventType.Trigger.thoriumReactorOverheat);

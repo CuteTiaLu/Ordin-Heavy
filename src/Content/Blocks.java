@@ -64,6 +64,7 @@ public class Blocks {
             Coolingliquid = Liquids.water;
             boostliquid = Liquids.cyanogen;
             CoolingCons = 80f / 60f;
+            Overheating = 0.03f;
 
             consumeLiquids(LiquidStack.with(Liquids.cyanogen, 12f / 60f)).boost();
             consumeLiquids(LiquidStack.with(Liquids.water, 80f / 60f)).boost().update(false);
