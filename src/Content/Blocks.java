@@ -100,7 +100,7 @@ public class Blocks {
             size = 2;
             liquidCapacity = 40f;
 
-            reload = 8.25f;
+            reload = 6.5f;
 
             shoot = new ShootAlternate(6f);
             shoot.shots = 1;
