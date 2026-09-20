@@ -44,7 +44,7 @@ public class OverItemTurret extends ItemTurret {
             if (!cooling) {
                 super.updateTile();
             }
-            if (lastShootTime > reload + Time.delta) heat = Math.max(heat - (coolingRate * (Time.delta * (reload / 60)) * ((cooling) ? 0.8f : 1f)), 0f);
+            if (lastShootTime > reload + Time.delta) heat = Math.max(heat - (coolingRate * (delta() * (reload / 60)) * ((cooling) ? 0.8f : 1f)), 0f);
         }
 
         @Override
