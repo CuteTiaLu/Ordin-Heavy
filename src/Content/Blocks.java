@@ -97,7 +97,7 @@ public class Blocks {
             rotateSpeed = 7f;
             inaccuracy = 1.25f;
 
-            range = 230;
+            range = 254;
 
             size = 2;
             liquidCapacity = 40f;
@@ -119,7 +119,7 @@ public class Blocks {
                 height = 15.2f;
                 trailLength = 17;
                 trailWidth = 1.2f;
-                lifetime = 15f;
+                lifetime = 12f;
                 ammoMultiplier = 5;
                 armorMultiplier = 0.8f;
 
