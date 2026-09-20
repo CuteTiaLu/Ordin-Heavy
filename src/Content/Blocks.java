@@ -134,7 +134,7 @@ public class Blocks {
                 ammoMultiplier = 4;
                 armorMultiplier = 0.78f;
                 homingPower = 0.2f;
-                reloadMultiplier = 1.5f;
+                reloadMultiplier = 1.1f;
 
                 trailLength = 5;
                 trailWidth = 1.5f;
