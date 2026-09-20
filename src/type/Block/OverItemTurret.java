@@ -48,6 +48,11 @@ public class OverItemTurret extends ItemTurret {
         }
 
         @Override
+        public boolean canConsume(){
+            return super.canConsume() && !cooling;
+        }
+
+        @Override
         protected void shoot(BulletType type) {
             super.shoot(type);
             heat = Math.min(heat + (Overheating * (reload / 60)), 1.0001f);

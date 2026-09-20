@@ -85,7 +85,7 @@ public class Blocks {
 
         Suppress = new OverItemTurret("压制") {{
 
-            requirements(Category.turret, ItemStack.with(Items.thorium, 0));
+            requirements(Category.turret, ItemStack.with(Iron, 80, Steel, 60, Items.silicon, 40));
 
             Overheating = 0.08f;
             coolingRate = 0.016f;
@@ -108,8 +108,6 @@ public class Blocks {
             RapidCooling = Liquids.cryofluid;
 
             consumeLiquids(LiquidStack.with(Liquids.cryofluid, 20f / 60f)).boost();
-
-
 
             ammo(
             Iron, new BasicBulletType(24f, 23) {{
