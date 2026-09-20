@@ -4,19 +4,21 @@ import mindustry.content.Fx;
 import mindustry.content.Items;
 import mindustry.content.Liquids;
 import mindustry.entities.bullet.BasicBulletType;
+import mindustry.entities.pattern.ShootAlternate;
 import mindustry.gen.Sounds;
 import mindustry.graphics.Pal;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.type.LiquidStack;
-import mindustry.content.Blocks;
 import mindustry.world.blocks.production.GenericCrafter;
 import mindustry.world.draw.*;
 import type.Block.BoostConsumeGenerator;
 import type.Block.DefenseCore;
 import type.Block.OverItemTurret;
 
-public class Block {
+import static Content.Items.*;
+
+public class Blocks {
     public static mindustry.world.Block
             Electric_Silicon_Furnace,//电硅炉
             Copper_Lead_Alloy_Mixer,//铜铅合金混合机
@@ -59,9 +61,9 @@ public class Block {
 
             BoostIntensity = 2.2f;
 
-            liqu = Liquids.water;
-            boostliqu = Liquids.cyanogen;
-            liquCons = 80f / 60f;
+            Coolingliquid = Liquids.water;
+            boostliquid = Liquids.cyanogen;
+            CoolingCons = 80f / 60f;
 
             consumeLiquids(LiquidStack.with(Liquids.cyanogen, 12f / 60f)).boost();
             consumeLiquids(LiquidStack.with(Liquids.water, 80f / 60f)).boost().update(false);
@@ -78,28 +80,43 @@ public class Block {
             requirements(Category.effect, ItemStack.with(Items.thorium, 320));
             size = 5;
 
-            addTurret(Blocks.salvo);
+            addTurret(mindustry.content.Blocks.salvo);
         }};
 
         Suppress = new OverItemTurret("压制") {{
 
             requirements(Category.turret, ItemStack.with(Items.thorium, 0));
 
-            Overheating = 0.08f;//1秒可以过热的程度
-            coolingRate = 0.16f;//1秒可以冷却的程度
+            Overheating = 0.08f;
+            coolingRate = 0.016f;
+
+            heatInaMax = 2.5f;
+
+            recoil = 0.3f;
+            rotateSpeed = 7f;
+            inaccuracy = 1.25f;
 
             size = 2;
             liquidCapacity = 40f;
 
-            reload = 2.5f;
+            reload = 8.25f;
+
+            shoot = new ShootAlternate(6f);
+            shoot.shots = 1;
+            shootY = 8;
 
             RapidCooling = Liquids.cryofluid;
 
-            consumeLiquids(LiquidStack.with(Liquids.cryofluid, 20f / 60f)).boost().update(false);
+            consumeLiquids(LiquidStack.with(Liquids.cryofluid, 20f / 60f)).boost();
 
-            ammo(Items.copper, new BasicBulletType(24f, 45) {{
-                width = 1.27f;
-                height = 10.8f;
+
+
+            ammo(
+            Iron, new BasicBulletType(24f, 23) {{
+                width = 2.3f;
+                height = 15.2f;
+                trailLength = 17;
+                trailWidth = 1.2f;
                 lifetime = 60f;
                 ammoMultiplier = 5;
                 armorMultiplier = 0.8f;
@@ -108,9 +125,11 @@ public class Block {
                 hitColor = backColor = trailColor = Pal.copperAmmoBack;
                 frontColor = Pal.copperAmmoFront;
             }},
-            Items.silicon, new BasicBulletType(24f, 40, "bullet") {{
-                width = 1.27f;
-                height = 10.8f;
+            Items.silicon, new BasicBulletType(24f, 24, "bullet") {{
+                width = 2.3f;
+                height = 15.2f;
+                trailLength = 17;
+                trailWidth = 1.2f;
                 lifetime = 60f;
                 ammoMultiplier = 4;
                 armorMultiplier = 0.78f;
@@ -122,6 +141,19 @@ public class Block {
                 hitEffect = despawnEffect = Fx.hitBulletColor;
                 hitColor = backColor = trailColor = Pal.siliconAmmoBack;
                 frontColor = Pal.siliconAmmoFront;
+            }},
+            Steel, new BasicBulletType(24f, 33) {{
+                width = 2.3f;
+                height = 15.2f;
+                trailLength = 17;
+                trailWidth = 1.2f;
+                lifetime = 60f;
+                ammoMultiplier = 5;
+                armorMultiplier = 0.8f;
+
+                hitEffect = despawnEffect = Fx.hitBulletColor;
+                hitColor = backColor = trailColor = Pal.copperAmmoBack;
+                frontColor = Pal.copperAmmoFront;
             }});
         }};
     }

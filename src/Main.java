@@ -1,9 +1,11 @@
-import Content.Block;
+import Content.Blocks;
+import Content.Items;
 import mindustry.mod.*;
 
 public class Main extends Mod {
     @Override
     public void loadContent(){
-        Block.Create();
+        Items.Create();
+        Blocks.Create();
     }
 }
