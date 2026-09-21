@@ -147,7 +147,7 @@ public class Blocks {
                 status = StatusEffects.burning;
                 hitEffect = new MultiEffect(Fx.hitBulletColor, Fx.fireHit);
                 makeFire = true;
-                reloadMultiplier = 1.3f;
+                reloadMultiplier = 1.12f;
 
                 hitEffect = despawnEffect = Fx.hitBulletColor;
                 hitColor = backColor = trailColor = Pal.copperAmmoBack;
@@ -164,6 +164,7 @@ public class Blocks {
 
                 splashDamageRadius = 13f;
                 splashDamage = 23f;
+                reloadMultiplier = 1.3f;
 
                 hitEffect = despawnEffect = Fx.hitBulletColor;
                 hitColor = backColor = trailColor = Pal.copperAmmoBack;
