@@ -112,7 +112,7 @@ public class Blocks {
 
             RapidCooling = Liquids.cryofluid;
 
-            coolant = consumeCoolant(0.1f);
+            coolant = consumeCoolant(0.4f);
             coolantMultiplier = 10f;
 
             ammo(
