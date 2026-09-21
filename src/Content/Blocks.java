@@ -145,7 +145,6 @@ public class Blocks {
                 splashDamage = 19f;
 
                 status = StatusEffects.burning;
-                hitEffect = new MultiEffect(Fx.hitBulletColor, Fx.fireHit);
                 makeFire = true;
                 reloadMultiplier = 1.12f;
 
