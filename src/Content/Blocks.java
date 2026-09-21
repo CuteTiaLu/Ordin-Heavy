@@ -3,7 +3,9 @@ package Content;
 import mindustry.content.Fx;
 import mindustry.content.Items;
 import mindustry.content.Liquids;
+import mindustry.content.StatusEffects;
 import mindustry.entities.bullet.BasicBulletType;
+import mindustry.entities.effect.MultiEffect;
 import mindustry.entities.pattern.ShootAlternate;
 import mindustry.gen.Sounds;
 import mindustry.graphics.Pal;
@@ -114,44 +116,54 @@ public class Blocks {
             coolantMultiplier = 10f;
 
             ammo(
-            Iron, new BasicBulletType(24f, 23) {{
+            Iron, new BasicBulletType(24f, 27) {{
                 width = 2.3f;
                 height = 15.2f;
                 trailLength = 17;
                 trailWidth = 1.2f;
                 lifetime = 12f;
-                ammoMultiplier = 5;
+                ammoMultiplier = 4;
                 armorMultiplier = 0.8f;
+
+                splashDamageRadius = 12f;
+                splashDamage = 17f;
 
                 hitEffect = despawnEffect = Fx.hitBulletColor;
                 hitColor = backColor = trailColor = Pal.copperAmmoBack;
                 frontColor = Pal.copperAmmoFront;
             }},
-            Items.silicon, new BasicBulletType(24f, 24, "bullet") {{
+            Items.pyratite, new BasicBulletType(24f, 25, "bullet") {{
                 width = 2.3f;
                 height = 15.2f;
-                trailLength = 17;
+                trailLength = 24;
                 trailWidth = 1.2f;
-                lifetime = 60f;
-                ammoMultiplier = 4;
-                armorMultiplier = 0.78f;
-                homingPower = 0.2f;
-                reloadMultiplier = 1.1f;
-
-                trailLength = 5;
-                trailWidth = 1.5f;
-                hitEffect = despawnEffect = Fx.hitBulletColor;
-                hitColor = backColor = trailColor = Pal.siliconAmmoBack;
-                frontColor = Pal.siliconAmmoFront;
-            }},
-            Steel, new BasicBulletType(24f, 33) {{
-                width = 2.3f;
-                height = 15.2f;
-                trailLength = 17;
-                trailWidth = 1.2f;
-                lifetime = 60f;
+                lifetime = 12f;
                 ammoMultiplier = 5;
                 armorMultiplier = 0.8f;
+
+                splashDamageRadius = 18f;
+                splashDamage = 19f;
+
+                status = StatusEffects.burning;
+                hitEffect = new MultiEffect(Fx.hitBulletColor, Fx.fireHit);
+                makeFire = true;
+                reloadMultiplier = 1.3f;
+
+                hitEffect = despawnEffect = Fx.hitBulletColor;
+                hitColor = backColor = trailColor = Pal.copperAmmoBack;
+                frontColor = Pal.copperAmmoFront;
+            }},
+            Steel, new BasicBulletType(24f, 36) {{
+                width = 2.3f;
+                height = 15.2f;
+                trailLength = 17;
+                trailWidth = 1.2f;
+                lifetime = 12f;
+                ammoMultiplier = 3;
+                armorMultiplier = 0.8f;
+
+                splashDamageRadius = 13f;
+                splashDamage = 23f;
 
                 hitEffect = despawnEffect = Fx.hitBulletColor;
                 hitColor = backColor = trailColor = Pal.copperAmmoBack;
